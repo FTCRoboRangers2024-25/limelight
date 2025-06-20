@@ -26,10 +26,10 @@ FOV_VERTICAL_HALF = 20.5  # Degrees from center to top
 FOV_HORIZONTAL_HALF = 27.0  # Degrees from center to right
 
 # Dynamic area filtering constants
-MIN_AREA_AT_TOP = 100.0
+MIN_AREA_AT_TOP = 50.0
 MIN_AREA_AT_BOTTOM = 600.0
 MAX_AREA_AT_TOP = 100.0
-MAX_AREA_AT_BOTTOM = 2900.0
+MAX_AREA_AT_BOTTOM = 3500.0
 
 # Camera position constants in world coordinates (meters)
 CAMERA_LENS_POSITION_WORLD = np.array([-0.16063272254, -0.1277051126, 0.38390702339], dtype=np.float64)
@@ -236,7 +236,7 @@ def runPipeline(image, llrobot):
 
         # === MODIFICATION: Added exclusion zone filter ===
         # Skip contours whose center is in the left 10% or top 5% of the frame.
-        if cx_obj < (img_width * 0.10) or cy_obj < (img_height * 0.05):
+        if cx_obj < (img_width * 0.15) or cy_obj < (img_height * 0.1):
             continue
         # === END MODIFICATION ===
 
