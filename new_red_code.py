@@ -234,11 +234,10 @@ def runPipeline(image, llrobot):
         cx_obj = M["m10"] / M["m00"]
         cy_obj = M["m01"] / M["m00"]
 
-        # === MODIFICATION: Added exclusion zone filter ===
-        # Skip contours whose center is in the left 10% or top 5% of the frame.
-        if cx_obj < (img_width * 0.15) or cy_obj < (img_height * 0.1):
+        #===========OUT OF BOUNDS ZONE==========
+        # % in width the zone not to be selected
+        if cx_obj < (img_width * 0.15) or cy_obj < (img_height * 0.15) or cy_obj > (img_width * 0.9):
             continue
-        # === END MODIFICATION ===
 
         y_pos_contour = np.clip(cy_obj, 0.0, FRAME_HEIGHT)
         y_ratio = y_pos_contour / FRAME_HEIGHT
